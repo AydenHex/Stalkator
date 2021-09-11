@@ -233,7 +233,7 @@ username = ''; message = ''
 print('\n     =====================')
 print('     === Stalkator 0.2 ===')
 print('     =====================')
-while(not '2' in message):
+while(message != '2'):
         print('\nPlease type a number')
         print('0- Set target')
         print('1- StartScraping (target = '+username+')')
