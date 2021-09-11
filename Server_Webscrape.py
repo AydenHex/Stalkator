@@ -216,7 +216,7 @@ else:
 
 print("\nPlease wait for your browser to load...")
 
-driver = webdriver.Chrome(r'C:\Program Files\Google\Chrome\Application\chromedriver.exe')
+driver = webdriver.Chrome(r'chromedriver.exe')
 driver.implicitly_wait(10)
 driver.get('https://www.instagram.com')
 driver.find_element_by_xpath('.//button[text()="Accepter tout"]').click()
