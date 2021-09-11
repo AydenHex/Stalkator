@@ -164,7 +164,7 @@ class ClientThread(threading.Thread):
                 if(self.scrapeBool):
                     self.clientsocket.sendall((str('StartScraping_')+username).encode())
                     DownloadFile(self, DOWNLOAD_PATH)
-                    while(not os.path.isfile('MainReport.txt')): time.sleep(1)
+                    while(not os.path.isfile('str(date.today())+'.csv')): time.sleep(1)
                     CompileReports('Report'+self.ip+'.txt')
                     print("[%s]: Reports compiled" % (self.ip))
                     self.scrapeBool = False
