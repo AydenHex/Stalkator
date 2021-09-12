@@ -36,25 +36,6 @@ def MakeFile(tab_abon, tab_abon2):
             fp.write(tab_abon2[i]+']')
     fp.close()
 
-def ParseFile(fileName):
-        tabTmp = []
-        fp = open(fileName, 'r')
-        content = fp.read()
-        i = 0
-        while(i < len(content)):
-            while(i < len(content) and content[i] != '['): i += 1
-            tabTmp.append([])
-            i += 1
-            while(i < len(content) and content[i] != ']'):
-                name = ''
-                while(content[i] != ',' and content[i] != ']'):
-                    name += content[i]
-                    i += 1
-                tabTmp[len(tabTmp)-1].append(name)
-                if(content[i] == ','): i += 2
-        fp.close()
-        return tabTmp
-
 def StoreFollow(accountName):
     
     tab1 = [] #Store abonnements
@@ -141,7 +122,7 @@ else:
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #TCP
 s.connect((HOST, PORT))
 
-driver = webdriver.Chrome(r'chromedriver.exe')
+driver = webdriver.Chrome(r'C:\Program Files\Google\Chrome\Application\chromedriver.exe')
 driver.implicitly_wait(10)
 driver.get('https://www.instagram.com')
 driver.find_element_by_xpath('.//button[text()="Accepter tout"]').click()
@@ -161,4 +142,5 @@ while("Quit" not in signal):
         StoreFollow(signal[14::])
         SendFile('ClientReport.txt')
 print("Client déconnecté !")
+if('ClientReport.Conf' in os.listdir(os.getcwd())): os.remove('ClientReport.txt')
 driver.quit()
