@@ -13,6 +13,7 @@ import socket
 import threading
 
 DOWNLOAD_PATH = (os.getcwd()+'\\')
+IsWorking = False
 
 def MakeFile(tab_abon, tab_abon2):
         fp = open("MainReport.txt", 'w')
@@ -49,6 +50,9 @@ def ParseFile(fileName):
         return tabTmp
 
 def StoreFollow(accountName):
+        global IsWorking
+        
+        IsWorking = True
         tab1 = [] #Store abonnements
         tab2 = [] #Store abonnés
 
@@ -110,6 +114,7 @@ def StoreFollow(accountName):
         df = pd.DataFrame.from_dict(follow, orient='index').transpose()
         df.to_csv(str(date.today())+'.csv')
 
+        IsWorking = False
         print("Store finished")
     
 #==========================================#
@@ -160,11 +165,12 @@ class ClientThread(threading.Thread):
 
         def run(self):
             global username
+            global IsWorking
             while(self.running):
                 if(self.scrapeBool):
                     self.clientsocket.sendall((str('StartScraping_')+username).encode())
                     DownloadFile(self, DOWNLOAD_PATH)
-                    while(not os.path.isfile('str(date.today())+'.csv')): time.sleep(1)
+                    while(IsWorking): time.sleep(1)
                     CompileReports('Report'+self.ip+'.txt')
                     print("[%s]: Reports compiled" % (self.ip))
                     self.scrapeBool = False
@@ -233,7 +239,7 @@ username = ''; message = ''
 print('\n     =====================')
 print('     === Stalkator 0.2 ===')
 print('     =====================')
-while(message != '2'):
+while(not '2' in message):
         print('\nPlease type a number')
         print('0- Set target')
         print('1- StartScraping (target = '+username+')')
@@ -245,4 +251,7 @@ while(message != '2'):
             StoreFollow(username)
 for client in tab_Client: client.running = False
 serverThread.running = False
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #TCP
+s.connect(('127.0.0.1', 1111)) #Fake connection to turn off the server
+if('MainReport.txt' in os.listdir(os.getcwd())): os.remove('MainReport.txt')
 driver.quit()
