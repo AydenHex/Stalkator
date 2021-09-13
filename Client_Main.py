@@ -46,7 +46,8 @@ signal = ''
 while("Quit" not in signal):
     signal = s.recv(2048).decode()
     if("StartScraping_" in signal):
-        StoreFollow(signal[14::])
+        tab1, tab2 = StoreFollow(signal[14::])
+        MakeFile('ClientReport.txt', tab1, tab2)
         SendFile('ClientReport.txt')
 print("Client déconnecté !")
 if('ClientReport.Conf' in os.listdir(os.getcwd())): os.remove('ClientReport.txt')
