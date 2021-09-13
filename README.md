@@ -3,7 +3,7 @@ A program to scrape data on social media, such as instagram, linkedin, facebook.
 
 *For now it only scrapes instagram followers and following
 
-*It only works on Windows, soon on Linux too
+*It only works on Windows
 
 *You need Google Chrome up to date !
 
