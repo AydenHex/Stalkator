@@ -27,7 +27,7 @@ def CompileReports(reportName):
 
         MakeFile('MainReport.txt', tab_abon1, tab_abon2)
 
-        follow = {'Followers': tab_abon2, 'Following': tab_abon1}
+        follow = {'Followers': tab_abon1, 'Following': tab_abon2}
         df = pd.DataFrame.from_dict(follow, orient='index').transpose()
         df.to_csv(str(date.today())+'.csv')
 
