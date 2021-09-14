@@ -12,10 +12,11 @@ For now it only:
 * Save photos of an account
 
 ## Requirements
-Project is created with these requirements:
+Libraries:
 * Selenium
 * Pandas
 * Requests
+Other:
 * Windows
 * Google chrome up to date
 
