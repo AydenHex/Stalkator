@@ -11,6 +11,8 @@ This is a program to scrape data on social media, such as instagram, linkedin, f
 
 You can connect multiples account with one server in order to have a more accurate scrapping (when it comes to followers and following since you can't view them all at once)
 
+! Warning ! The account must be accessible from the one you're connected to
+
 For now it only:
 * Scrape instagram followers and following
 * Save photos of an instagram account
