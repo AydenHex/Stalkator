@@ -16,6 +16,7 @@ Libraries:
 * Selenium
 * Pandas
 * Requests
+
 Other:
 * Windows
 * Google chrome up to date
