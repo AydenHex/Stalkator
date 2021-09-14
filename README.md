@@ -47,3 +47,5 @@ Other:
     * Facial recognition, spotting (openCV + facenet)
 * V0.6:
     * Automated standby (Likes/Comments/Followers change)
+* V0.7:
+    * Android application and notifications about changes from a specific target
