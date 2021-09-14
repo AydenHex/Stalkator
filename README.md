@@ -50,3 +50,5 @@ Other:
     * Automated standby (Likes/Comments/Followers change)
 * V0.7:
     * Android application and notifications about changes from a specific target
+* V0.8:
+    * Support for Facebook (same actions)
