@@ -45,6 +45,7 @@ Other:
     * Database sqlite3
 * V0.5:
     * Facial recognition, spotting (openCV + facenet)
+    * Improving scrapping of photos (only thoses with faces, only target...)
 * V0.6:
     * Automated standby (Likes/Comments/Followers change)
 * V0.7:
