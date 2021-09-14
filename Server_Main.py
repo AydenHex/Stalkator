@@ -1,5 +1,3 @@
-import os
-import time
 import pandas as pd
 from datetime import date
 import socket
@@ -52,6 +50,7 @@ class ClientThread(threading.Thread):
             self.port = port
             self.clientsocket = clientsocket
             self.scrapeBool = False
+            self.scrapeType = 0
             self.running = True
             print("\n[+] Connection of %s %s" % (self.ip, self.port))
 
@@ -60,7 +59,7 @@ class ClientThread(threading.Thread):
             global IsWorking
             while(self.running):
                 if(self.scrapeBool):
-                    self.clientsocket.sendall((str('StartScraping_')+username).encode())
+                    self.clientsocket.sendall((str('StartScraping_')+str(self.scrapeType)+username).encode())
                     DownloadFile(self, os.getcwd()+'\\')
                     while(IsWorking): time.sleep(1)
                     CompileReports('Report'+self.ip+'.txt')
@@ -118,22 +117,30 @@ username = ''; message = ''
 print('\n     ======================')
 print('     === Stalkator 0.2b ===')
 print('     ======================')
-while(not '2' in message):
+while(message != '3'):
         print('\nPlease type a number')
         print('0- Set target')
-        print('1- StartScraping (target = '+username+')')
-        print('2- Quit')
+        print('1- Get Followers (target = '+username+')')
+        print('2- Get Photos')
+        print('3- Quit')
         message = input(" >> ")
         if(message == '0'): username = input('Set username >> ')
         elif(message == '1' and username != ''):
-            for client in tab_Client: client.scrapeBool = True
+            for client in tab_Client:
+                client.scrapeType = int(message)
+                client.scrapeBool = True
             IsWorking = True
-            tab1, tab2 = StoreFollow(username)
+            tab1, tab2 = GetFollowers(username)
             MakeFile('MainReport.txt', tab1, tab2)
             follow = {'Followers': tab1, 'Following': tab2}
             df = pd.DataFrame.from_dict(follow, orient='index').transpose()
             df.to_csv(str(date.today())+'.csv')
             IsWorking = False
+        elif(message == '2' and username != ''):
+            for client in tab_Client:
+                client.scrapeType = int(message)
+                client.scrapeBool = True
+            GetPhotos(username)
 for client in tab_Client: client.running = False
 serverThread.running = False
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #TCP
