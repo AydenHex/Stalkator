@@ -1,7 +1,9 @@
 # Stalkator
 A program to scrape data on social media, such as instagram, linkedin, facebook...
 
-*For now it only scrapes instagram followers and following
+*For now it only:
+  -Scrape instagram followers and following
+  -Save photos of an account
 
 *It only works on Windows
 
