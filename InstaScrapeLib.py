@@ -112,7 +112,7 @@ def GetPhotos(accountName):
         time.sleep(1)
         scrolldown = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var scrolldown=document.body.scrollHeight;return scrolldown;")
         time.sleep(1)
-        elements = driver.find_elements_by_xpath('.//img')
+        elements = driver.find_elements_by_css_selector("*[class='FFVAD']")
         for element in elements:
             url = element.get_attribute('src')
             if(type(url) is str and url.find('http') >= 0):
