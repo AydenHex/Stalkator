@@ -4,6 +4,7 @@
 * [General info](#general-info)
 * [Requirements](#requirements)
 * [Setup](#setup)
+* [Patch notes](#patch-notes)
 
 ## General info
 This is a program to scrape data on social media, such as instagram, linkedin, facebook...
@@ -46,5 +47,3 @@ Other:
     * Facial recognition, spotting (openCV + facenet)
 * V0.6:
     * Automated standby (Likes/Comments/Followers change)
-
-And more later !
