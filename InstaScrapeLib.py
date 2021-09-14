@@ -2,9 +2,13 @@ from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
+import requests
+import os
+import time
+
+driver = webdriver.Chrome(r'chromedriver.exe')
 
 def ConnectInsta(username, password):
-    driver = webdriver.Chrome(r'chromedriver.exe')
     driver.implicitly_wait(10)
     driver.get('https://www.instagram.com')
     driver.find_element_by_xpath('.//button[text()="Accepter tout"]').click()
@@ -17,7 +21,7 @@ def ConnectInsta(username, password):
     btn = driver.find_element_by_xpath('.//button[text()="Plus tard"]')
     driver.execute_script ("arguments[0].click();",btn)
 
-def StoreFollow(accountName):
+def GetFollowers(accountName):
 
         tab1 = [] #Store abonnements
         tab2 = [] #Store abonnés
@@ -76,3 +80,55 @@ def StoreFollow(accountName):
             
         print("Store finished")
         return tab2, tab1
+        
+def GetPhotos(accountName):
+    tabUrl = []
+
+    driver.get('https://www.instagram.com/'+accountName)
+
+    #Scroll
+    scrolldown=driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var scrolldown=document.body.scrollHeight;return scrolldown;")
+    last_count = 0
+    while(last_count!=scrolldown):
+        last_count = scrolldown
+        time.sleep(1)
+        scrolldown = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var scrolldown=document.body.scrollHeight;return scrolldown;")
+        time.sleep(1)
+        #elements = driver.find_elements_by_xpath('.//img')
+        elements = driver.find_elements_by_css_selector("*[class='FFVAD']")
+        for element in elements:
+            url = element.get_attribute('src')
+            if(type(url) is str and url.find('http') >= 0):
+                if(not url in tabUrl):
+                    tabUrl.append(url)
+            
+    driver.get('https://www.instagram.com/'+accountName+'/tagged')
+    time.sleep(5)
+
+    scrolldown=driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var scrolldown=document.body.scrollHeight;return scrolldown;")
+    last_count = 0
+    while(last_count!=scrolldown):
+        last_count = scrolldown
+        time.sleep(1)
+        scrolldown = driver.execute_script("window.scrollTo(0, document.body.scrollHeight);var scrolldown=document.body.scrollHeight;return scrolldown;")
+        time.sleep(1)
+        elements = driver.find_elements_by_xpath('.//img')
+        for element in elements:
+            url = element.get_attribute('src')
+            if(type(url) is str and url.find('http') >= 0):
+                if(not url in tabUrl):
+                    tabUrl.append(url)
+                    
+    if(not os.path.isdir(os.getcwd()+'\\Photos')):
+        os.mkdir(os.getcwd()+'\\Photos')
+    if(not os.path.isdir(os.getcwd()+'\\Photos\\'+accountName)):
+        os.mkdir(os.getcwd()+'\\Photos\\'+accountName)
+        
+    i = 1
+    for element in tabUrl:
+        response = requests.get(element, timeout=10)
+        if(response):
+            file = open(os.getcwd()+'\\Photos\\'+accountName+'\\'+accountName + str(i) + '.jpg', 'wb')
+            file.write(response.content)
+            file.close()
+            i = i+1
