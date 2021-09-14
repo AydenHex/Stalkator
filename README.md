@@ -29,3 +29,22 @@ Other:
 * Step II - Launch the clients (it will connect to the server automatically)
 * Step III - Connect all your accounts
 * Step IV - Set a target then scrape the data
+
+## Patch notes
+
+* V0.2:
+    * Support for server/clients
+    * Configuration files
+* V0.2b:
+    * Code rearranged
+    * Get photos of an account
+* V0.3:
+    * Graphical interface (GUI)
+* V0.4:
+    * Database sqlite3
+* V0.5:
+    * Facial recognition, spotting (openCV + facenet)
+* V0.6:
+    * Automated standby (Likes/Comments/Followers change)
+
+And more later !
