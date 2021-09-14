@@ -10,7 +10,7 @@ A program to scrape data on social media, such as instagram, linkedin, facebook.
 
 For now it only:
 * Scrape instagram followers and following
-* Save photos of an account
+* Save photos of an instagram account
 
 ## Requirements
 Libraries:
