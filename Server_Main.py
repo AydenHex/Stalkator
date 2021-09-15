@@ -15,7 +15,7 @@ def CompileReports(reportName):
         tabTmp = ParseFile(reportName)
         tab_abon12 = tabTmp[0]; tab_abon22 = tabTmp[1]
 
-        for i in range(len(tab_abon1)):
+        for i in range(len(tab_abon12)):
             if(tab_abon12[i] not in tab_abon1):
                 tab_abon1.append(tab_abon12[i])
 
