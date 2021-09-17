@@ -8,8 +8,6 @@ from tkinter import messagebox
 from FileLib import *
 from InstaScrapeLib import *
 
-#Global variables
-
 class Interface(Tk):
     def __init__(self):
         super().__init__()
