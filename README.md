@@ -36,8 +36,8 @@ Other:
 ## Patch notes
 
 * V0.2:
-    * Support for server/clients
-    * Configuration files
+    - Support for server/clients
+    - Configuration files
 * V0.2b:
     * Code rearranged
     * Get photos of an account
