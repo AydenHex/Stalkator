@@ -41,8 +41,11 @@ Other:
 * **V0.2b:**
     * Code rearranged
     * Get photos of an account
-* **V0.3: (soon !)**
+* **V0.3:**
     * Graphical interface (GUI)
+* **V0.3b: (soon)**
+   * Code improved
+   * More exceptions handled
 * **V0.4:**
     * Database sqlite3
 * **V0.5:**
