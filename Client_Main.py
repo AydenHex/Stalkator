@@ -59,6 +59,6 @@ while("Quit" not in signal):
             flag = ConnectInsta(stalker_username, stalker_password)
         if(flag == 1):
             GetPhotos(signal[15::])
-print("Client déconnecté !")
+print("Client disconnected !")
 if('ClientReport.Conf' in os.listdir(os.getcwd())): os.remove('ClientReport.txt')
 QuitDriver()
