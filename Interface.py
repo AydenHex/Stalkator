@@ -68,18 +68,19 @@ class Interface(Tk):
         self.clientsButton['text']=('Clients ('+str(len(self.tab_Client))+')')
         try:
             if(clientTab.state() == "normal"):
-                clientTab.title('Clients ('+str(len(self.tab_Client))+')')
-                for widget in clientTab.winfo_children():
-                    widget.destroy()
-                addressLabel = Label(clientTab, text="List of address (IP : Port)", font= ('Helvetica 10 underline'))
-                addressLabel.pack()
-                for i in range(len(self.tab_Client)):
-                    clientLabel = Label(clientTab, text="Client "+str(i+1)+": [ "+str(self.tab_Client[i].ip)+' : '+str(self.tab_Client[i].port)+' ]')
-                    clientLabel.pack()
-                closeButton = Button(clientTab, text='Close', command=lambda: self.close_ClientsTab(), padx=10, pady=5)
-                closeButton.pack(side=BOTTOM)
+                if(len(clientTab.winfo_children()) - len(self.tab_Client) < 2):
+                    clientTab.title('Clients ('+str(len(self.tab_Client))+')')
+                    for widget in clientTab.winfo_children():
+                        widget.destroy()
+                    addressLabel = Label(clientTab, text="List of address (IP : Port)", font= ('Helvetica 10 underline'))
+                    addressLabel.pack()
+                    for i in range(len(self.tab_Client)):
+                        clientLabel = Label(clientTab, text="Client "+str(i+1)+": [ "+str(self.tab_Client[i].ip)+' : '+str(self.tab_Client[i].port)+' ]')
+                        clientLabel.pack()
+                    closeButton = Button(clientTab, text='Close', command=lambda: self.close_ClientsTab(), padx=10, pady=5)
+                    closeButton.pack(side=BOTTOM)
         except: pass
-        self.clientsButton.after(2000, self.updateText)
+        self.clientsButton.after(1000, self.updateText)
         
     def Write_textBox(self, text):
         self.textBox.configure(state='normal')
