@@ -1,4 +1,6 @@
 import socket
+import os
+import time
 
 from InstaScrapeLib import *
 from FileLib import *
@@ -37,18 +39,26 @@ else:
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM) #TCP
 s.connect((HOST, PORT))
-
-ConnectInsta(stalker_username, stalker_password)
+print("Connected to the server.")
 
 signal = ''
 while("Quit" not in signal):
     signal = s.recv(2048).decode()
     if("StartScraping_1" in signal):
-        tab1, tab2 = GetFollowers(signal[15::])
-        MakeFile('ClientReport.txt', tab1, tab2)
-        SendFile('ClientReport.txt')
+        flag = 1
+        if(driver == None):
+            flag = ConnectInsta(stalker_username, stalker_password)
+        if(flag == 1):
+            tab1, tab2 = GetFollowers(signal[15::])
+            if(tab1 != [] or tab2 != []):
+                MakeFile('ClientReport.txt', tab1, tab2)
+                SendFile('ClientReport.txt')
     elif("StartScraping_2" in signal):
-        GetPhotos(signal[15::])
+        flag = 1
+        if(driver == None):
+            flag = ConnectInsta(stalker_username, stalker_password)
+        if(flag == 1):
+            GetPhotos(signal[15::])
 print("Client déconnecté !")
 if('ClientReport.Conf' in os.listdir(os.getcwd())): os.remove('ClientReport.txt')
-driver.quit()
+QuitDriver()
