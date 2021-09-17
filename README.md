@@ -39,7 +39,6 @@ Other:
     * Support for server/clients
     * Configuration files
 * **V0.2b:**
-    * Code rearranged
     * Get photos of an account
 * **V0.3:**
     * Graphical interface (GUI)
