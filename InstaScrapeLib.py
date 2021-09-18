@@ -70,7 +70,7 @@ def GetFollowers(accountName):
             title = element.get_attribute('title')
             tab1.append(title)
 
-        lnks = driver.find_elements_by_tag_name("a")
+        """lnks = driver.find_elements_by_tag_name("a")
         for lnk in lnks: 
             if('followers' in lnk.get_attribute('href')):
                 driver.execute_script ("arguments[0].click();",lnk)
@@ -93,7 +93,7 @@ def GetFollowers(accountName):
         elements = driver.find_elements_by_css_selector("*[class='FPmhX notranslate  _0imsa ']")
         for element in elements:
             title = element.get_attribute('title')
-            tab2.append(title)
+            tab2.append(title)"""
             
         print("Store finished")
         return tab2, tab1
