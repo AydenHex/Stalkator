@@ -5,6 +5,7 @@ import socket
 import os
 import time
 
+from FileLib import *
 import Interface
 
 def CompileReports(reportName):
