@@ -18,6 +18,9 @@ For now it only:
 * Save photos of an instagram account
 
 ## Requirements
+
+You could install libraries by your own or use ```pip install -r requirements.txt```
+
 Libraries:
 * Selenium
 * Pandas
